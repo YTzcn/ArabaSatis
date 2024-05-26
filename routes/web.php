@@ -15,3 +15,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+/* test routu*/
+
+Route::get('test',function (){
+
+    return view('panel.layouts.app');
+});
