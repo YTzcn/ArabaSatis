@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
+    <title>Login</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{asset('panel/css/simplebar.css')}}">
     <!-- Fonts CSS -->
@@ -22,8 +22,18 @@
 <body class="light ">
 <div class="wrapper vh-100">
     <div class="row align-items-center h-100">
-        <form class="col-lg-3 col-md-4 col-10 mx-auto text-center">
-            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+        <form class="col-lg-3 col-md-4 col-10 mx-auto text-center" method="POST" action={{ route('login') }}>
+            @csrf
+            <!-- ERRORS -->
+            @if($errors->any())
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{$e}}</li>
+                    @endforeach
+                </ul>
+            @endif
+
+            <a class = "navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
                 <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
               <g>
                   <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
@@ -35,17 +45,21 @@
             <h1 class="h6 mb-3">Sign in</h1>
             <div class="form-group">
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control form-control-lg" placeholder="Email address" required="" autofocus="">
+                <input type="email" id="inputEmail" name="email" class="form-control form-control-lg" placeholder="Email address" required="" autofocus="">
             </div>
             <div class="form-group">
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required="">
+                <input type="password" id="inputPassword" name="password" class="form-control form-control-lg" placeholder="Password" required="">
             </div>
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" value="remember-me"> Stay logged in </label>
+                    <input type="checkbox" name="remember" value="remember-me"> Stay logged in </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Let me in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Oturum Aç</button>
+            <br>
+            <a class="mt-5 mb-5 text-center"  href="{{ route('register') }}">
+                {{ __('  Kayıt Ol') }}
+            </a>
             <p class="mt-5 mb-3 text-muted">© 2020</p>
         </form>
     </div>
