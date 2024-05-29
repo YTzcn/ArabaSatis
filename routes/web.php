@@ -11,9 +11,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // test routu //
-    Route::get('test',function (){
-        return view('panel.layouts.app');})->name('test');
+    Route::get('/homepage',function (){
+        return view('panel.homepage.index');})->name('homepage');
 
 
 
